@@ -7,17 +7,37 @@
 
 import Foundation
 import SwiftUI
+import Alamofire
+import Kingfisher
 
 struct CardView: View {
+    
+    var companyName: String
+    var logoUrl: String
+    var points: Int
+    var levelName: String
+    var cashback: Int
+    
+    var cardBackgroundColor: String
+    var highlightTextColor: String
+    var textColor: String
+    var mainColor: String
+    var accentColor: String
+    var backgroundColor: String
+    
+    
     var body: some View {
         VStack (spacing: 0) {
             HStack {
-                Text("Bonus Money")
+                Text(companyName)
                     .font(.system(size: 25))
+                    .foregroundColor(Color(hex: highlightTextColor))
+                    .lineLimit(1)
+                    .padding(.bottom, 7)
                 
                 Spacer()
                 
-                Image(systemName: "heart")
+                KFImage(URL(string: logoUrl))
                     .frame(width: 50, height: 50)
                     .foregroundColor(.white)
                     .background(Color.red)
@@ -30,13 +50,14 @@ struct CardView: View {
             HStack (alignment: .bottom){
                 
                 VStack {
-                    Text("200")
+                    Text(String(points))
                         .font(.system(size: 30))
+                        .foregroundColor(Color(hex: highlightTextColor))
                         .fontWeight(.medium)
                     
                     
                     + Text(" баллов")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(hex: textColor))
                         .font(.system(size: 20))
                 }
                 .padding(.vertical, 15)
@@ -47,23 +68,25 @@ struct CardView: View {
             HStack {
                 
                 VStack (alignment: .leading) {
-                    Text("Кэшбек")
-                        .foregroundColor(.gray)
+                    Text("кэшбек")
+                        .foregroundColor(Color(hex: textColor))
                         .font(.system(size: 15))
+                        .padding(.bottom, 3)
+                    Text("\(cashback)%")
                         .padding(.bottom, 7)
-                    Text("1 %")
-                        .padding(.bottom, 7)
+                        .font(.system(size: 20))
                 }
                 
                 Spacer()
                 
                 VStack (alignment: .leading) {
                     Text("Уровень")
-                        .foregroundColor(.gray)
+                        .foregroundColor(Color(hex: textColor))
                         .font(.system(size: 15))
+                        .padding(.bottom, 3)
+                    Text(levelName)
                         .padding(.bottom, 7)
-                    Text("Базовый уровень тест")
-                        .padding(.bottom, 7)
+                        .font(.system(size: 20))
                 }
                 
                 Spacer()
@@ -73,11 +96,33 @@ struct CardView: View {
             
             HStack {
                 Button(action: {
+                    //"http://jsonplaceholder.typicode.com/posts"
+                    
+            
+                    // good solution from article
+                    func takeAllCompaniesIdeal() async throws -> [Responce] {
+                        let parameters = ["offset": 0]
+                        let headers: HTTPHeaders = [
+                            "TOKEN" : "123",
+                            "Content-Type" : "application/json"
+                        ]
+                        
+                        return try await withCheckedThrowingContinuation({ continuation in
+                            AF.request("http://dev.bonusmoney.pro/mobileapp/getAllCompaniesIdeal",
+                                       method: .post,
+                                       parameters: parameters,
+                                       encoding: JSONEncoding.default,
+                                       headers: headers
+                            ).response { responce in
+                                
+                            }
+                        })
+                    }
                     
                 }, label: {
                     Image("eyeWhite")
                         .resizable()
-                        .colorMultiply(.blue)
+                        .colorMultiply(Color(hex: mainColor))
                         .frame(width: 25, height: 25)
                         .scaledToFit()
                 })
@@ -90,7 +135,7 @@ struct CardView: View {
                 }, label: {
                     Image("trashWhite")
                         .resizable()
-                        .colorMultiply(.red)
+                        .colorMultiply(Color(hex: accentColor))
                         .frame(width: 25, height: 25)
                         .scaledToFit()
                 })
@@ -103,14 +148,21 @@ struct CardView: View {
                     Text("Подробнее")
                         .padding(.vertical, 13)
                         .padding(.horizontal, 40)
-                        .background(Color(hex: "efefef"))
+                        .foregroundColor(Color(hex: mainColor))
+                        .background(Color(hex: backgroundColor))
                         .cornerRadius(15)
                 })
             }
             .padding(.top, 7)
         }
         .padding(15)
-        .background(Color.white)
+        .background(Color(hex: cardBackgroundColor))
         .cornerRadius(30)
+    }
+}
+
+struct CardView_Previews: PreviewProvider {
+    static var previews: some View {
+        CardView(companyName: "", logoUrl: "", points: 0, levelName: "", cashback: 0, cardBackgroundColor: "", highlightTextColor: "", textColor: "", mainColor: "", accentColor: "", backgroundColor: "")
     }
 }

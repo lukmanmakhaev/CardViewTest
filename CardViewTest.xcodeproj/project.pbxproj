@@ -11,6 +11,14 @@
 		072F583F29EAD82F00E41E49 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072F583E29EAD82F00E41E49 /* ContentView.swift */; };
 		072F584129EAD82F00E41E49 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072F584029EAD82F00E41E49 /* Assets.xcassets */; };
 		072F584429EAD82F00E41E49 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 072F584329EAD82F00E41E49 /* Preview Assets.xcassets */; };
+		072F584C29EAFD5600E41E49 /* Color+ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 072F584B29EAFD5600E41E49 /* Color+ext.swift */; };
+		073765DA29EB2B5200038478 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073765D929EB2B5200038478 /* CardView.swift */; };
+		073765DC29EB2E6B00038478 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073765DB29EB2E6B00038478 /* NetworkService.swift */; };
+		073765DF29EC138100038478 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 073765DE29EC138100038478 /* Alamofire */; };
+		073765E329ECCE5A00038478 /* Responce.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073765E229ECCE5A00038478 /* Responce.swift */; };
+		073765E529ECCE8C00038478 /* CardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073765E429ECCE8C00038478 /* CardModel.swift */; };
+		073765E729ED6B4E00038478 /* CardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 073765E629ED6B4E00038478 /* CardViewModel.swift */; };
+		073765EC29EDE02A00038478 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 073765EB29EDE02A00038478 /* Kingfisher */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +27,13 @@
 		072F583E29EAD82F00E41E49 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		072F584029EAD82F00E41E49 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		072F584329EAD82F00E41E49 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		072F584B29EAFD5600E41E49 /* Color+ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+ext.swift"; sourceTree = "<group>"; };
+		073765D929EB2B5200038478 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
+		073765DB29EB2E6B00038478 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		073765E129EC195E00038478 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		073765E229ECCE5A00038478 /* Responce.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Responce.swift; sourceTree = "<group>"; };
+		073765E429ECCE8C00038478 /* CardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardModel.swift; sourceTree = "<group>"; };
+		073765E629ED6B4E00038478 /* CardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +41,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				073765EC29EDE02A00038478 /* Kingfisher in Frameworks */,
+				073765DF29EC138100038478 /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,10 +68,15 @@
 		072F583B29EAD82F00E41E49 /* CardViewTest */ = {
 			isa = PBXGroup;
 			children = (
+				073765E129EC195E00038478 /* Info.plist */,
+				072F584A29EAFD4000E41E49 /* Extensions */,
+				073765D829EB2B3F00038478 /* Views */,
+				073765E029EC176100038478 /* Models */,
 				072F583C29EAD82F00E41E49 /* CardViewTestApp.swift */,
 				072F583E29EAD82F00E41E49 /* ContentView.swift */,
 				072F584029EAD82F00E41E49 /* Assets.xcassets */,
 				072F584229EAD82F00E41E49 /* Preview Content */,
+				073765DB29EB2E6B00038478 /* NetworkService.swift */,
 			);
 			path = CardViewTest;
 			sourceTree = "<group>";
@@ -65,6 +87,32 @@
 				072F584329EAD82F00E41E49 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		072F584A29EAFD4000E41E49 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				072F584B29EAFD5600E41E49 /* Color+ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		073765D829EB2B3F00038478 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				073765D929EB2B5200038478 /* CardView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		073765E029EC176100038478 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				073765E229ECCE5A00038478 /* Responce.swift */,
+				073765E429ECCE8C00038478 /* CardModel.swift */,
+				073765E629ED6B4E00038478 /* CardViewModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +131,10 @@
 			dependencies = (
 			);
 			name = CardViewTest;
+			packageProductDependencies = (
+				073765DE29EC138100038478 /* Alamofire */,
+				073765EB29EDE02A00038478 /* Kingfisher */,
+			);
 			productName = CardViewTest;
 			productReference = 072F583929EAD82F00E41E49 /* CardViewTest.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +163,10 @@
 				Base,
 			);
 			mainGroup = 072F583029EAD82F00E41E49;
+			packageReferences = (
+				073765DD29EC138000038478 /* XCRemoteSwiftPackageReference "Alamofire" */,
+				073765EA29EDE02A00038478 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+			);
 			productRefGroup = 072F583A29EAD82F00E41E49 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -139,6 +195,12 @@
 			files = (
 				072F583F29EAD82F00E41E49 /* ContentView.swift in Sources */,
 				072F583D29EAD82F00E41E49 /* CardViewTestApp.swift in Sources */,
+				073765E329ECCE5A00038478 /* Responce.swift in Sources */,
+				073765E529ECCE8C00038478 /* CardModel.swift in Sources */,
+				073765E729ED6B4E00038478 /* CardViewModel.swift in Sources */,
+				073765DA29EB2B5200038478 /* CardView.swift in Sources */,
+				073765DC29EB2E6B00038478 /* NetworkService.swift in Sources */,
+				072F584C29EAFD5600E41E49 /* Color+ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -270,6 +332,7 @@
 				DEVELOPMENT_TEAM = QYY3G6W6RG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CardViewTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -299,6 +362,7 @@
 				DEVELOPMENT_TEAM = QYY3G6W6RG;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = CardViewTest/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -339,6 +403,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		073765DD29EC138000038478 /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		073765EA29EDE02A00038478 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		073765DE29EC138100038478 /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 073765DD29EC138000038478 /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		073765EB29EDE02A00038478 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 073765EA29EDE02A00038478 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 072F583129EAD82F00E41E49 /* Project object */;
 }

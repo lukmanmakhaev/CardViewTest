@@ -6,130 +6,60 @@
 //
 
 import SwiftUI
-
-/*
- 
- GET:
- POST:
- HEAD:
- PUT:
- DELETE:
- 
- */
-
+import Alamofire
 
 struct ContentView: View {
+    
+    @StateObject var viewModel = CardViewModel()
+    @State var items = 0
+    
+    
     var body: some View {
-        
         ZStack {
             Color(hex: "efefef")
                 .edgesIgnoringSafeArea(.all)
-            
-            VStack {
-                VStack (spacing: 0) {
-                    HStack {
-                        Text("Bonus Money")
-                            .font(.system(size: 25))
-                        
-                        Spacer()
-                        
-                        Image(systemName: "heart")
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(.white)
-                            .background(Color.red)
-                            .clipShape(Circle())
-                            .padding(.bottom, 7)
-                    }
+
+            VStack (spacing: 0){
+                Text ("Управление картами")
+                    .padding()
+                    .frame(maxWidth: .infinity)
+                    .background(.white)
+                    .font(.system(size: 23))
+                    //.fontWeight(.medium)
+                    .foregroundColor(Color(hex: "2688eb"))
                     
-                    Divider()
-                        
-                    HStack (alignment: .bottom){
-                        
-                        VStack {
-                            Text("200")
-                                .font(.system(size: 30))
-                                .fontWeight(.medium)
-                            
-                            
-                            + Text(" баллов")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 20))
+                
+                ScrollView (showsIndicators: false) {
+                    LazyVStack {
+                        ForEach (0 ..< $viewModel.cardsList.count, id: \.self) { i in
+                            viewModel.cardsList[i]
+                                .onAppear() {
+                                    viewModel.getMoreData(index: i)
+                                }
                         }
-                        .padding(.vertical, 15)
-                        
-                        Spacer()
                     }
-                    
-                    HStack {
-                        
-                        VStack (alignment: .leading) {
-                            Text("Кэшбек")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 15))
-                                .padding(.bottom, 7)
-                            Text("1 %")
-                                .padding(.bottom, 7)
-                        }
-                        
-                        Spacer()
-                        
-                        VStack (alignment: .leading) {
-                            Text("Уровень")
-                                .foregroundColor(.gray)
-                                .font(.system(size: 15))
-                                .padding(.bottom, 7)
-                            Text("Базовый уровень тест")
-                                .padding(.bottom, 7)
-                        }
-                        
-                        Spacer()
+                    .padding(.top)
+                    if viewModel.isLoading {
+                        ProgressView(label: {
+                            Text ("Подгрузка компаний")
+                        })
+                            .padding()
                     }
-                   
-                    Divider()
-                    
-                    HStack {
-                        Button(action: {
-                            
-                        }, label: {
-                            Image("eyeWhite")
-                                .resizable()
-                                .colorMultiply(.blue)
-                                .frame(width: 25, height: 25)
-                                .scaledToFit()
-                        })
-                        .padding(.leading)
-                        
-                        Spacer()
-                        
-                        Button(action: {
-     
-                        }, label: {
-                            Image("trashWhite")
-                                .resizable()
-                                .colorMultiply(.red)
-                                .frame(width: 25, height: 25)
-                                .scaledToFit()
-                        })
-                        
-                        Spacer()
-                        
-                        Button(action: {
-   
-                        }, label: {
-                            Text("Подробнее")
-                                .padding(.vertical, 13)
-                                .padding(.horizontal, 40)
-                                .background(Color(hex: "efefef"))
-                                .cornerRadius(15)
-                        })
-                    }
-                    .padding(.top, 7)
                 }
-                .padding(15)
-                .background(Color.white)
-                .cornerRadius(30)
+                .background(Color.clear)
+                .padding(.horizontal)
             }
-            .padding()
+            .alert(isPresented: $viewModel.showErrorAlert) {
+                Alert(
+                    title: Text(viewModel.errorMessage!),
+                    dismissButton: .default(Text("OK")) {
+                        viewModel.showErrorAlert = false
+                    }
+                )
+            }
+        }
+        .task {
+            await viewModel.getCardData()
         }
     }
 }
@@ -137,5 +67,44 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+                    .previewDevice(PreviewDevice(rawValue: "iPhone 14 Plus"))
+                    .previewDisplayName("iPhone 14 Plus")
+
+                ContentView()
+                    .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
+                    .previewDisplayName("iPhone 14 Pro Max")
     }
 }
+
+
+//List {
+//    ForEach (0 ..< $viewModel.cardsList.count, id: \.self) { i in
+//        viewModel.cardsList[i]
+//            .onAppear() {
+//                self.items += 1
+//                print(items)
+//                if (items == $viewModel.cardsList.count) {
+//                    viewModel.isLoading = true
+//                    viewModel.getCardData()
+//                    //print($viewModel.cardsList.count)
+//                }
+//                print($viewModel.cardsList.count)
+//            }
+//    }
+//    .listRowSeparator(.hidden)
+//    .listRowBackground(Color(hex: "efefef"))
+//
+//    if viewModel.isLoading {
+//        HStack (alignment: .center){
+//            Spacer()
+//            ProgressView()
+//            Spacer()
+//        }
+//        .padding(.vertical)
+//        .listRowSeparator(.hidden)
+//        .listRowBackground(Color(hex: "efefef"))
+//    }
+//
+//
+//}
+//.listStyle(PlainListStyle())

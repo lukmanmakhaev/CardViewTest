@@ -75,36 +75,3 @@ struct ContentView_Previews: PreviewProvider {
                     .previewDisplayName("iPhone 14 Pro Max")
     }
 }
-
-
-//List {
-//    ForEach (0 ..< $viewModel.cardsList.count, id: \.self) { i in
-//        viewModel.cardsList[i]
-//            .onAppear() {
-//                self.items += 1
-//                print(items)
-//                if (items == $viewModel.cardsList.count) {
-//                    viewModel.isLoading = true
-//                    viewModel.getCardData()
-//                    //print($viewModel.cardsList.count)
-//                }
-//                print($viewModel.cardsList.count)
-//            }
-//    }
-//    .listRowSeparator(.hidden)
-//    .listRowBackground(Color(hex: "efefef"))
-//
-//    if viewModel.isLoading {
-//        HStack (alignment: .center){
-//            Spacer()
-//            ProgressView()
-//            Spacer()
-//        }
-//        .padding(.vertical)
-//        .listRowSeparator(.hidden)
-//        .listRowBackground(Color(hex: "efefef"))
-//    }
-//
-//
-//}
-//.listStyle(PlainListStyle())

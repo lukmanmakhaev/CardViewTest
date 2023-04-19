@@ -66,15 +66,11 @@ class NetworkService: ObservableObject {
             case .success (let data):
                 guard let data = data else {
                     completion(.failure(.emptyData))
-                    print("empty data")
                     return
                 }
                 do {
                     let jsondata = try JSONDecoder().decode([Responce].self, from: data)
                     completion(.success(jsondata))
-                    
-                    print(offset)
-                    //print(jsondata)
                 } catch {
                     completion(.failure(.decodeError))
                 }
